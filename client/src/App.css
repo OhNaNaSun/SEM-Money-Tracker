@@ -1,12 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-float infinite 3s ease-in-out;
@@ -30,10 +21,84 @@
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
+
   100% {
     transform: translateY(0px);
   }
+}
+
+.app-header {
+  display: flex;
+  padding: 2rem;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #9fc4f9;
+}
+
+.back-button {
+  cursor: pointer;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+  gap: 1rem;
+  width: 100%
+}
+
+.app-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+}
+
+.app-button {
+  background-color: #9fc4f9;
+  padding: 0.5rem;
+}
+
+.app-row * {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.expense-table {
+  width: 100%;
+  text-align: left;
+
+  thead {
+    background: lightgray;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f2f2f2;
+    /* Light grey for odd rows */
+  }
+
+  /* Target even rows */
+  tr:nth-child(even) {
+    background-color: #ffffff;
+    /* White for even rows */
+  }
+
+  td,
+  th {
+    padding: 0.5rem;
+  }
+}
+
+.center {
+  margin: 0 auto
+}
+
+.flex {
+  display: flex;
 }
