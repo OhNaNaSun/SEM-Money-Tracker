@@ -3,6 +3,9 @@ import { getExpenses } from './moneyTrackerSlice'
 
 export function MoneyTracker() {
     const expenses = useAppSelector(getExpenses)
+    const categoryName = expenses.map((expense) => expense.category)
+    const categories = [...new Set(categoryName)]
+
     return (
         <>
             <p>Expense summary: </p>
@@ -14,12 +17,20 @@ export function MoneyTracker() {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map((expense, index) => (
-                        <tr key={index}>
-                            <td>{expense.category}</td>
-                            <td>${expense.amount}</td>
-                        </tr>
-                    ))}
+                    {categories.map((category, index) => {
+                        const sum = expenses.reduce((acc, expense) => {
+                            if (expense.category === category) {
+                                acc += Number(expense.amount)
+                            }
+                            return acc
+                        }, 0)
+                        return (
+                            <tr key={index}>
+                                <td>{category}</td>
+                                <td>${sum}</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </>

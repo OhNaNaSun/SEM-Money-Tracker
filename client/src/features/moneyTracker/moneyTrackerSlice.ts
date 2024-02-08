@@ -15,9 +15,9 @@ export interface ExpensesState {
 const initialState: ExpensesState = {
     value: [
         {
-            amount: '100',
-            category: 'Food',
-            date: '2021-10-01',
+            amount: '',
+            category: '',
+            date: '',
         },
     ],
     status: 'idle',
@@ -32,7 +32,7 @@ export const fetchExpenses = createAsyncThunk(
             throw new Error('Failed to fetch expenses')
         }
         const data = await response.json()
-        return data
+        return data.reverse()
     }
 )
 
@@ -61,8 +61,7 @@ export const expenseSlice = createSlice({
             // doesn't actually mutate the state because it uses the Immer library,
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changes
-            console.log('addding')
-            state.value.push(action.payload)
+            state.value.unshift(action.payload)
             // state.value = [...state.value, action.payload]
         },
     },
@@ -76,7 +75,7 @@ export const expenseSlice = createSlice({
             .addCase(addExpenseAsync.fulfilled, (state, action) => {
                 // When the async operation is successful, update the state
                 // For example, add the new expense to your state array
-                state.value.push(action.payload)
+                // state.value.push(action.payload)
             })
             .addCase(addExpenseAsync.rejected, (state, action) => {
                 // Optionally, handle the error state

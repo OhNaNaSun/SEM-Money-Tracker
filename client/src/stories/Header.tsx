@@ -42,7 +42,7 @@ export const Header = ({
                         />
                     </g>
                 </svg>
-                <h1>Acme</h1>
+                <h1>Money Tracker</h1>
             </div>
             <div>
                 {user ? (
